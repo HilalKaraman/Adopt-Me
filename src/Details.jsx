@@ -28,29 +28,44 @@ const Details = () => {
   const pet = results.data.pets[0];
 
   return (
-    <div className="details">
+    <div className="flex items-center justify-center ">
       <Carousel images={pet.images} />
-      <div>
+      <div className=" relative bottom-0 left-0 bg-gradient-to-tr">
         <h1>{pet.name}</h1>
         <h2>
           {pet.animal} - {pet.breed} - {pet.city} - {pet.state}
         </h2>
-        <button onClick={() => setShowModal(true)}>Adopt {pet.name}</button>
+        <button
+          className="rounded border-none bg-orange-500 px-6 py-2 text-white hover:opacity-50"
+          onClick={() => setShowModal(true)}
+        >
+          Adopt {pet.name}
+        </button>
         <p>{pet.description}</p>
         {showModal ? (
           <Modal>
-            <div>
-              <h1>Would you like to adopt {pet.name}</h1>
-              <div className="buttons">
-                <button
-                  onClick={() => {
-                    setAdoptedPet(pet);
-                    navigate("/");
-                  }}
-                >
-                  Yes
-                </button>
-                <button onClick={() => setShowModal(false)}>No</button>
+            <div className=" absolute fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+              <div className="bg-white rounded-lg p-6 w-11/12 max-w-md shadow-lg">
+                <h1 className="text-xl font-bold text-center mb-4">
+                  Would you like to adopt {pet.name}?
+                </h1>
+                <div className="flex justify-center gap-6">
+                  <button
+                    className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700"
+                    onClick={() => {
+                      setAdoptedPet(pet);
+                      navigate("/");
+                    }}
+                  >
+                    Yes
+                  </button>
+                  <button
+                    className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700"
+                    onClick={() => setShowModal(false)}
+                  >
+                    No
+                  </button>
+                </div>
               </div>
             </div>
           </Modal>

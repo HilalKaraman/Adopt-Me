@@ -20,7 +20,7 @@ class Carousel extends Component {
     return (
       <div className="carousel">
         <img src={images[active]} alt="animal" />
-        <div className="carousel-smaller">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {images.map((photo, index) => (
             // eslint-disable-next-line
             <img
